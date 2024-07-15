@@ -1,2 +1,5 @@
-# cursojavamobral
-Aulas do curso da Jornada do Mobral ao Junior.
+Curso Java Mobral ao Junior
+=====
+
+
+Esse curso tem como objetivo nivelar a equipe de desenvolvimento da SEAPE.
