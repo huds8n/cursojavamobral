@@ -1,5 +1,8 @@
 package modelos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cela {
 
 	private String descricao;
@@ -12,9 +15,11 @@ public class Cela {
 
 	private Ala ala;
 
+	private List<Interno> internosDaCela = new ArrayList<Interno>();
+
 	public Cela(Ala alaPertencente) {
 		this.ala = alaPertencente;
-		
+
 	}
 
 	public String getDescricao() {
@@ -55,6 +60,18 @@ public class Cela {
 
 	public void setAla(Ala ala) {
 		this.ala = ala;
+	}
+
+	public void alocarNaCela(Interno interno) {
+		if (ativo == false) {
+			System.out.println("Cela inativa - Impossivel Alocar Custodiado");
+		} else {
+			this.internosDaCela.add(interno);
+			System.err.println("###################### -Confere-   ######################");
+			for (Interno internoConfere : internosDaCela) {
+				System.err.println(internoConfere.getNome());
+			}
+		}
 	}
 
 }

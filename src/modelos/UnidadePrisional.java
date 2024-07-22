@@ -11,6 +11,8 @@ public class UnidadePrisional {
 
 	private boolean status;
 
+	private Funcionario diretor;
+
 	private List<Bloco> blocos = new ArrayList<Bloco>();
 
 	public UnidadePrisional() {
@@ -47,6 +49,15 @@ public class UnidadePrisional {
 
 	public void setBlocos(List<Bloco> blocos) {
 		this.blocos = blocos;
+	}
+
+	public void nomearDiretor(Funcionario funcionario) {
+		this.diretor = funcionario;
+		System.out.println("O Novo Diretor da Unidade é: " + funcionario.getNome());
+	}
+
+	public Funcionario getDiretor() {
+		return diretor;
 	}
 
 }
