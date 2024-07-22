@@ -67,10 +67,13 @@ public class Cela {
 			System.out.println("Cela inativa - Impossivel Alocar Custodiado");
 		} else {
 			this.internosDaCela.add(interno);
-			System.err.println("###################### -Confere-   ######################");
-			for (Interno internoConfere : internosDaCela) {
-				System.err.println(internoConfere.getNome());
-			}
+		}
+	}
+
+	public void imprimirConfere() {
+		System.err.println("Imprimindo Confere da Cela");
+		for (Interno interno : internosDaCela) {
+			System.out.println("Custodiado Alocaco: " + interno.getNome());
 		}
 	}
 

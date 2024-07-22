@@ -20,10 +20,8 @@ public class Testador {
 		pessoa.setDataNascimento(new Date());
 
 		Funcionario lp = new Funcionario(pessoa);
-		System.err.println("O nome do funcionario é: " + lp.getNome());
 
 		Interno custodiado = new Interno(pessoa);
-		System.err.println("O nome do custodiado é: " + custodiado.getNome());
 
 		UnidadePrisional papuda = new UnidadePrisional();
 		papuda.setDescricao("Papuda");
@@ -40,6 +38,8 @@ public class Testador {
 		cela.setDescricao("Cela 1");
 
 		cela.alocarNaCela(custodiado);
+
+		cela.imprimirConfere();
 
 		boolean nomeacaoLiberada = cela.liberarNomeacao(lp);
 
