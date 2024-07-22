@@ -14,27 +14,6 @@ public class Testador {
 
 	public static void main(String[] args) {
 
-		Pessoa gerson = new Pessoa();
-		gerson.setNome("Gerson");
-		gerson.setCpf("123456789");
-
-		Funcionario diretor = new Funcionario(gerson);
-
-		UnidadePrisional papuda = new UnidadePrisional();
-		papuda.setDescricao("Papuda");
-		papuda.setQtdeVagas(5);
-		papuda.nomearDiretor(diretor);
-
-		Bloco bloco = new Bloco(papuda);
-		bloco.setDescricao("Bloco 1");
-
-		Ala ala = new Ala(bloco);
-		ala.setAla("Ala 1");
-
-		Cela cela = new Cela(ala);
-		cela.setAtivo(true);
-		cela.setDescricao("Cela 1");
-
 		Pessoa pessoa = new Pessoa();
 		pessoa.setNome("LP");
 		pessoa.setCpf("123456789");
@@ -46,7 +25,29 @@ public class Testador {
 		Interno custodiado = new Interno(pessoa);
 		System.err.println("O nome do custodiado é: " + custodiado.getNome());
 
+		UnidadePrisional papuda = new UnidadePrisional();
+		papuda.setDescricao("Papuda");
+		papuda.setQtdeVagas(5);
+
+		Bloco bloco = new Bloco(papuda);
+		bloco.setDescricao("Bloco 1");
+
+		Ala ala = new Ala(bloco);
+		ala.setAla("Ala 1");
+
+		Cela cela = new Cela(ala);
+		cela.setAtivo(true);
+		cela.setDescricao("Cela 1");
+
 		cela.alocarNaCela(custodiado);
+
+		boolean nomeacaoLiberada = cela.liberarNomeacao(lp);
+
+		if (nomeacaoLiberada) {
+			papuda.nomearDiretor(lp);
+		} else {
+			System.out.println("Nomeação não permitida");
+		}
 
 	}
 

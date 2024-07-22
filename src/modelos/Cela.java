@@ -74,4 +74,15 @@ public class Cela {
 		}
 	}
 
+	public boolean liberarNomeacao(Funcionario diretor) {
+		for (Interno internoConfere : internosDaCela) {
+			if (diretor.getCpf().equals(internoConfere.getCpf())) {
+				System.out.println("O Custodiado Não pode ser nomeado Diretor da Unidade");
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 }
