@@ -19,7 +19,7 @@ public class StartAutoScan implements NBioBSPJNI.CAPTURE_CALLBACK {
 
 	private NBioBSPJNI.FIR_TEXTENCODE textSavedFIR;
 
-	public static final int QUALITY_LIMIT = 80;
+	public boolean verificaDedo = true;;
 
 	public void iniciarAuto() {
 		bsp = new NBioBSPJNI();
@@ -32,16 +32,18 @@ public class StartAutoScan implements NBioBSPJNI.CAPTURE_CALLBACK {
 
 				while (autoScan) {
 
-					boolean bFingerExist = false;
+					Boolean bExistFinger = new Boolean(false);
 
-					bsp.CheckFinger(bFingerExist);
+					bsp.CheckFinger(bExistFinger);
 
-					if (bFingerExist == false) {
-						OnIdentify(2000);
-					}
+					if (bExistFinger) {
+						OnIdentify(5000);
+						System.out.println("======>> Dedo Repousado !! <<======");
+					} else
+						System.out.println("________ Sem Dedo No Leitor _______");
 
 					try {
-						Thread.sleep(500);
+						Thread.sleep(1000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -58,17 +60,20 @@ public class StartAutoScan implements NBioBSPJNI.CAPTURE_CALLBACK {
 
 		windowOption = bsp.new WINDOW_OPTION();
 		windowOption.WindowStyle = NBioBSPJNI.WINDOW_STYLE.INVISIBLE;
-        
+
+		// Liga o LED ao iniciar a captura
 		bsp.Capture(NBioBSPJNI.FIR_PURPOSE.VERIFY, hCapturedFIR, timeout, null, windowOption);
 		if (bsp.IsErrorOccured() == false) {
-			
+
 			textSavedFIR = bsp.new FIR_TEXTENCODE();
 			bsp.GetTextFIRFromHandle(hCapturedFIR, textSavedFIR);
 
 			System.out.println("Digital Capturada: " + textSavedFIR.TextFIR);
-			autoScan = false;
 		}
 
+		// Desliga o LED após a captura
+		// Não há necessidade de um método específico, o LED deve se desligar
+		// automaticamente após a captura
 	}
 
 	@Override
